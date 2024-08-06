@@ -1,0 +1,10 @@
+my-vite-project/tsconfig.app.json
+my-vite-project/tsconfig.json
+my-vite-project/vite.config.ts
+my-vite-project/src/vite-env.d.ts
+my-vite-project/src/assets/react.svg
+my-vite-project/tsconfig.node.json
+my-vite-project/.eslintrc.cjs
+my-vite-project/public/vite.svg
+my-vite-project/package-lock.json
+my-vite-project/package.json
