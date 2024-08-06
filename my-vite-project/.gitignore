@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+tsconfig.app.json
+tsconfig.json
+vite.config.ts
+src/vite-env.d.ts
+src/assets/react.svg
+tsconfig.node.json
+.eslintrc.cjs
+public/vite.svg
+package-lock.json
+package.json
+
