@@ -8,8 +8,8 @@ import { HeaderLayout } from '@/components/layout/HeaderLayout';
 
 function App() {
   return (
-    <HeaderLayout>
-      <Router>
+    <Router>
+      <HeaderLayout>
         <Routes>
           <Route path='/' element={<TopPage />} />
           <Route path='/login' element={<LoginPage />} />
@@ -18,8 +18,8 @@ function App() {
           <Route path='/score' element={<ScorePage />} />
           {/* <Route path="/register" element={<Register />} /> */}
         </Routes>
-      </Router>
-    </HeaderLayout>
+      </HeaderLayout>
+    </Router>
   );
 }
 
