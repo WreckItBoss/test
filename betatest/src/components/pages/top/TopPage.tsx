@@ -124,10 +124,9 @@
 // };
 
 // export default TopPage;
-
 import React, { useEffect, useState, useMemo } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Map, { Marker, NavigationControl } from 'react-map-gl';
+import Map, { Marker, NavigationControl, Popup } from 'react-map-gl';
 import styles from './TopPage.module.scss';
 import { shelterRepository } from '@/libs/repository/firebase';
 import { fetchGeocode } from '@/libs/services/getCoordinate';
@@ -237,33 +236,30 @@ const TopPage: React.FC = () => {
             e.originalEvent.stopPropagation();
             setPopupInfo(data);
           }}
-        />
+        >
+          {popupInfo?.title === data.title && (
+            <Popup
+              longitude={data.longitude}
+              latitude={data.latitude}
+              anchor="top"
+              closeOnClick={false}
+              onClose={() => setPopupInfo(null)}
+              className={styles.popup}
+            >
+              <div>
+                <h4>{data.title}</h4>
+                <p>評価: {renderStars(data.score)}</p>
+                <p>住所: {data.address}</p>
+              </div>
+            </Popup>
+          )}
+        </Marker>
       )),
-    [pinList],
+    [pinList, popupInfo],
   );
 
   return (
     <div className={styles.container}>
-      <div id='container' className={styles.contentWrapper}>
-        <div className={styles.infoTitle}>避難所情報</div>
-        <p className={styles.subTitle}>備蓄の充実度合いが評価になります</p>
-        <div className={styles.redFrameContainer}>
-          <div className={styles.frameContent}>
-            <div className={styles.name}>
-              {popupInfo ? popupInfo.title : '未選択'}
-            </div>
-            <div className={styles.starsContainer}>
-              <div>評価</div>
-              {popupInfo ? renderStars(popupInfo.score) : '-'}
-              <div>{popupInfo ? popupInfo.score : ''}</div>
-            </div>
-            <div className={styles.address}>
-              住所：{popupInfo ? popupInfo.address : '未選択'}
-            </div>
-          </div>
-        </div>
-      </div>
-      
       <div className={styles.mapContainer}>
         <Map
           initialViewState={{
@@ -279,8 +275,6 @@ const TopPage: React.FC = () => {
           <NavigationControl />
         </Map>
       </div>
-
-
       <div className={styles.title}>避難所マップ</div>
       <input
         type="text"
@@ -292,7 +286,7 @@ const TopPage: React.FC = () => {
 
       {searchClicked && topShelters.length > 0 && (
         <div className={styles.topShelters}>
-          <h3>5km以内の避難所</h3>
+          <h3>Top 5 Shelters within 5km</h3>
           {topShelters.map((shelter, index) => (
             <div key={index} className={styles.shelterInfo}>
               <div className={styles.shelterCard}>
