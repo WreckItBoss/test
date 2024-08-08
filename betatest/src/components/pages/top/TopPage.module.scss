@@ -1,0 +1,129 @@
+:root {
+  --main-color: rgb(186, 27, 27);
+  --background-color: rgba(255, 182, 193, 0.8);
+  --font-size-title: 28px;
+  --font-size-normal: 20px;
+  --star-color: red;
+}
+
+.container {
+  display: flex;
+  font-size: var(--font-size-normal);
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.title {
+  font-size: var(--font-size-title);
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+.mapContainer {
+  position: relative;
+  width: '100%';
+  height: 500px;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.contentWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infoTitle {
+  font-size: var(--font-size-title);
+  color: var(--main-color);
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.subTitle {
+  color: var(--main-color);
+  font-size: 12px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.redFrameContainer {
+  width: 100%;
+  height: 225px;
+}
+
+.redFrameImage {
+  width: 100%;
+  height: 100%;
+}
+
+.frameContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: black;
+  z-index: 2;
+  gap: 16px;
+  border-radius: 10px;
+  border: 3px solid var(--main-color);
+  background-color: var(--background-color);
+}
+
+.starsContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+}
+
+.address {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.fullStar,
+.halfStar,
+.emptyStar {
+  color: var(--star-color);
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: var(--font-size-normal);
+  color: #fff;
+  background-color: var(--main-color);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: darkred;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 20px;
+}
+
+.popup {
+}
