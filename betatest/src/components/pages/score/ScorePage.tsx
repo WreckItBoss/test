@@ -8,8 +8,9 @@ import { ScoreModal } from './ScoreModal';
 import { useModalContext } from '@/context/modal.context';
 import { shelterRepository } from '@/libs/repository/firebase';
 import { useAuthContext } from '@/context/auth.context';
-import { missingAmount } from '@/libs/services/scoreMethods';
+
 import { Item } from '@/types/firestore/item.types';
+import { getMissingAmount } from '@/libs/services/scoreMethods';
 
 const ScorePage: React.FC = () => {
   const { modalData } = useModalContext();
@@ -21,28 +22,17 @@ const ScorePage: React.FC = () => {
     const fetchData = async () => {
       const shelterDatum = await shelterRepository.list([['uid', '==', uid]]);
       const shelterData = shelterDatum[0];
+      const shelterId = shelterData.id;
       const score = shelterData.score;
       setScore(score);
 
-      console.log('楽天のデータ');
-      const missingData = await missingAmount('vExEQ6c65QTg3RjC1fKz');
+      const missingData = await getMissingAmount({ shelterId });
       if (missingData) {
-        console.log(missingData);
         setItemAmout(missingData);
       } else {
         console.error('Missing amount data not found.');
         setItemAmout(null);
       }
-
-      // 評価値の計算
-      // console.log("ここから");
-      // const data = await getItems({ shelterId:'vExEQ6c65QTg3RjC1fKz' }) ;
-      // console.log(data);
-      // const ideal = await getIdealAmount({ shelterId: 'vExEQ6c65QTg3RjC1fKz' });
-      // console.log(ideal);
-      // const calculatescore = calculateScore('vExEQ6c65QTg3RjC1fKz' );
-      // console.log(calculatescore);
-      // 評価値の計算
     };
 
     fetchData();
@@ -53,8 +43,8 @@ const ScorePage: React.FC = () => {
       {modalData.isModalActive && <ScoreModal />}
       <ScoreUnit scoreNum={score} />
       <SouhyoUnit missingData={missingData} />
-      <RecommendUnit />
-      <ButtonUnit linkTo='/form' linkText='管理者はこちら' />
+      <RecommendUnit missingData={missingData} />
+      <ButtonUnit linkTo='/form' linkText='在庫を入力し直す' />
     </div>
   );
 };
