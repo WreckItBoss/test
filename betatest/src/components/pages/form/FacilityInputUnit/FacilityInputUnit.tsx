@@ -21,7 +21,8 @@ const FacilityInputUnit = () => {
       </FlexBox>
       <FlexBox gap='24px' flexDirection='column'>
         <Input
-          label='施設名'
+          // label='施設名'
+          label='レストラン名'
           required
           {...register('name')}
           error={errors['name']?.message}
@@ -33,7 +34,8 @@ const FacilityInputUnit = () => {
           error={errors['address']?.message}
         />
         <Input
-          label='収容人数(人)'
+          // label='収容人数(人)'
+          label='食事制限'
           required
           {...register('capacity')}
           error={errors['capacity']?.message}
