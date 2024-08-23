@@ -275,14 +275,14 @@ const TopPage: React.FC = () => {
           <NavigationControl />
         </Map>
       </div>
-      <div className={styles.title}>避難所マップ</div>
+      {/* <div className={styles.title}>避難所マップ</div>
       <input
         type="text"
         value={inputAddress}
         onChange={(e) => setInputAddress(e.target.value)}
         placeholder="住所を入力してください"
       />
-      <button onClick={handleSearch}>検索</button>
+      <button onClick={handleSearch}>検索</button> */}
 
       {searchClicked && topShelters.length > 0 && (
         <div className={styles.topShelters}>
