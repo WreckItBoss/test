@@ -12,29 +12,30 @@ const ScoreUnit: React.FC<ScoreProps> = ({ scoreNum }) => {
   const chartRef = useRef<Chart<'doughnut'> | null>(null);
 
   const getBackgroundColor = (percentage: number) => {
-    if (percentage<30){
+    if (percentage < 30) {
       return 'rgba(255, 0, 0, 1)';
-    }else if(percentage>=30 && percentage<=70 ){
+    } else if (percentage >= 30 && percentage <= 70) {
       return 'rgba(255, 255, 0, 1)';
-    }else if(percentage>70){
+    } else if (percentage > 70) {
       return 'rgba(0, 255, 255, 1)';
     }
-  }
-
+  };
 
   const score = scoreNum;
 
   useEffect(() => {
     const ctx = canvasRef.current as ChartItem;
     if (ctx) {
-
-      const percentage = score/5*100;
+      const percentage = (score / 5) * 100;
 
       const data = {
         datasets: [
           {
             data: [percentage, 100 - percentage],
-            backgroundColor: [getBackgroundColor(percentage), 'rgba(0, 0, 0, 0)'],
+            backgroundColor: [
+              getBackgroundColor(percentage),
+              'rgba(0, 0, 0, 0)',
+            ],
             borderWidth: 0,
           },
         ],
@@ -50,13 +51,9 @@ const ScoreUnit: React.FC<ScoreProps> = ({ scoreNum }) => {
           plugins: {
             tooltip: {
               enabled: false,
-            }
-          },
-          hover:{
-            mode: null,
+            },
           },
         },
-
       };
 
       chartRef.current = new Chart(ctx, config);
@@ -70,29 +67,31 @@ const ScoreUnit: React.FC<ScoreProps> = ({ scoreNum }) => {
   }, [score]);
 
   return (
-      <div className={styles.score_frame}>
-        <h2 className={styles.color_rakuten}>あなたの自治体の避難所の評価は</h2>
-        <div className={styles.chart}>
-          <div className={styles.chartwrapper}>
-            <canvas ref={canvasRef} id='doughnutChart'></canvas>
-          </div>
-          <p><span>{score}</span>/5</p>
+    <div className={styles.score_frame}>
+      <h2 className={styles.color_rakuten}>あなたの自治体の避難所の評価は</h2>
+      <div className={styles.chart}>
+        <div className={styles.chartwrapper}>
+          <canvas ref={canvasRef} id='doughnutChart'></canvas>
         </div>
-        <div className={styles.chart_hanrei}>
-            <div>
-              <div></div>
-              <p>：十分にある</p>
-            </div>
-            <div>
-              <div></div>
-              <p>：不足している</p>
-            </div>
-            <div>
-              <div></div>
-              <p>：とても不足している</p>
-            </div>
-          </div>
+        <p>
+          <span>{score}</span>/5
+        </p>
       </div>
+      <div className={styles.chart_hanrei}>
+        <div>
+          <div></div>
+          <p>：十分にある</p>
+        </div>
+        <div>
+          <div></div>
+          <p>：不足している</p>
+        </div>
+        <div>
+          <div></div>
+          <p>：とても不足している</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

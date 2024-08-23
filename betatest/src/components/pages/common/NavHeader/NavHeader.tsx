@@ -1,7 +1,7 @@
 import { FlexBox } from '@/components/common';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './NavHeader.module.scss';
-import logo from '@/assets/whiteIcon.svg';
+// import logo from '@/assets/whiteIcon.svg';
 
 const NavHeader = () => {
   const navigate = useNavigate();
