@@ -16,7 +16,7 @@ const FacilityInputUnit = () => {
     <FlexBox flexDirection='column' gap='24px' className={styles.container}>
       <FlexBox justifyContent='center'>
         <Typography fontWeight={600} fontSize='20px' color='red1'>
-          施設情報入力
+          レストラン情報入力
         </Typography>
       </FlexBox>
       <FlexBox gap='24px' flexDirection='column'>
