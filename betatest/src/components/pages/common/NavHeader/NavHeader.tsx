@@ -18,13 +18,13 @@ const NavHeader = () => {
         alignItems='center'
         className={styles.headerContainerInner}
       >
-        <img
+        {/* <img
           src={logo}
           alt='logo'
           width={155}
           className={styles.headerIcon}
           onClick={() => navigate('/')}
-        />
+        /> */}
         {location.pathname === '/' && (
           <button
             onClick={() => navigate('/login')}
